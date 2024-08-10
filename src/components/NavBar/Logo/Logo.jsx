@@ -6,7 +6,7 @@ import LogoImage from "../../../Assets/logo.png";
  * @returns {JSX.Element} The rendered logo component.
  */
 const Logo = () => {
-  return <img src={LogoImage} alt="Logo" />;
+  return <img class="logo" src={LogoImage} alt="Logo" />;
 };
 
 export default Logo;
