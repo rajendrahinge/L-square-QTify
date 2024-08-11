@@ -5,6 +5,7 @@
     align-items: center;
     height: 270px;
     gap: 20px;
+    background-color: #121212;
     justify-content: baseline;
     /* border: 1px solid red; */
   }
@@ -15,4 +16,8 @@
     line-height: 48px;
   }
   .hero_right {
+  }
+
+  h3 {
+    color: #FFFFFF;
   }

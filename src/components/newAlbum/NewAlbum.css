@@ -1,6 +1,7 @@
 .newAlbum{
     width: 100vw;
     /* border: 1px solid red; */
+    background-color: #121212;
   }
   .newAlbum_static {
     display: flex;

@@ -1,5 +1,6 @@
 .topAlbum{
     width: 100vw;
+    background-color: #121212;
     /* border: 1px solid red; */
   }
   .topAlbum_static {
@@ -7,6 +8,7 @@
     align-items: baseline;
     padding: 12px;
     justify-content: space-between;
+    color: #ffffff;
   }
   .topAlbum_static > button {
       width: 120px;
@@ -14,7 +16,7 @@
       font-weight: 600;
       font-size: 20px;
       background-color: var(--black-color);
-      color: var(--primary-color);
+      color: #34694b;
       
       border: none;
       /* border: 1px solid red; */

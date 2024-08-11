@@ -27,10 +27,10 @@
     height: 20%;
     color: var(--white-color);
     position: relative;
-    background-color: var(--white-color);
+    background-color: #FFFFFF;
   }
   .Album_card_text > h3 {
-    background-color: var(--black-color);
+    background-color: #121212;
     position: absolute;
     left: 10px;
     top: 20px;
