@@ -1,13 +1,18 @@
-// import logo from './logo.svg';
-import Layout from "./Layout"
-import './App.css';
+import "./App.css";
+import AlbumSongsPage from "./components/Album Songs Page/AlbumSongsPage";
+import HomePage from "./components/Home Page/HomePage";
+import { Route, Routes } from "react-router-dom";
 
-function App() {
+const App = () => {
   return (
     <>
-    <Layout/>      
+      <Routes>
+        {" "}
+        <Route path="/" Component={HomePage} />{" "}
+        <Route path="/album/:title" Component={AlbumSongsPage} />{" "}
+      </Routes>{" "}
     </>
   );
-}
+};
 
 export default App;

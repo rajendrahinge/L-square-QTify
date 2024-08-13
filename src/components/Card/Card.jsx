@@ -1,32 +1,49 @@
 import React from "react";
-import "./Card.css";
+import { Tooltip } from "@mui/material";
+import styles from "./card.module.css";
+import { useNavigate } from "react-router-dom";
 
-/**
- * Represents a card component.
- * Renders a card based on the provided data and type.
- * @param {Object} data - The data object containing information for the card.
- * @param {string} type - The type of the card.
- * @returns {JSX.Element|null} The rendered card component or null if the type is not recognized.
- */
 const Card = ({ data, type }) => {
-  switch (type) {
-    case "normal":
-      return (
-        <div className="Album_Cont" id={data.id}>
-          <div className="Album_card">
-            <div className="Album_card_image">
-              <img src={data.image} alt={data.title} />
-            </div>
-            <div className="Album_card_text">
-              <h3>{data.follows} Follows</h3>
-            </div>
+  let navigate = useNavigate();
+  const getCard = () => {
+    const commonContent = (
+      <div
+        className={styles.cardImg}
+        onClick={() =>
+          type !== "songs" &&
+          navigate(`/album/${data.slug}`, { state: { album: data } })
+        }
+      >
+        <img src={data.image} alt={type === "album" ? "album" : data.title} />
+        <p>
+          {((type === "album" ? data.follows : data.likes) / 1000).toFixed(1)}
+          {data.follows > 999999 || data.likes > 999999 ? "m" : "k"}{" "}
+          {type === "album" ? "Follows" : "Likes"}
+        </p>
+      </div>
+    );
+
+    return (
+      <Tooltip
+        title={
+          type === "album"
+            ? `${data.songs.length} songs`
+            : `Label : ${data.genre.label}`
+        }
+        placement="top"
+        arrow
+      >
+        <div className={styles.card}>
+          {commonContent}
+          <div>
+            <h3>{data.title}</h3>
           </div>
-          <h3 className="Album_title">{data.title}</h3>
         </div>
-      );
-    default:
-      return null;
-  }
+      </Tooltip>
+    );
+  };
+
+  return type === "album" || type === "songs" ? getCard() : null;
 };
 
 export default Card;
