@@ -1,48 +1,43 @@
-import React, { useEffect, useState } from "react";
-import { faqData, getUId } from "../AxiosData/AxiosData";
-import "./Faqs.css";
-import ExploreAccordion from "../ExploreAccordion/ExploreAccordion";
+import styles from "./faqs.module.css";
+import * as React from "react";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-/**
- * Represents the FAQs component.
- * Fetches and displays frequently asked questions in an accordion format.
- * @returns {JSX.Element} The rendered Faqs component.
- */
-const Faqs = () => {
-  // Define the questionData state to store the fetched question data
-  const [questionData, setQuestionData] = useState([]);
+let query = {
+  "Is QTify free to use?": "Yes! It is 100% free, and has 0% ads!",
+  "Can I download and listen to songs offline?":
+    "Sorry, unfortunately we don't provide the service to download any songs.",
+};
 
-  /**
-   * Fetches the FAQ data from the server when the component is rendered.
-   */
-  useEffect(() => {
-    const loadHandler = async () => {
-      try {
-        // Fetch the FAQ data using the faqData function from AxiosData
-        const res = await faqData();
-        // Update the questionData state with the fetched data
-        setQuestionData(res.data);
-      } catch (error) {
-        console.log("Error fetching FAQ data:", error);
-      }
-    };
-    // Call the loadHandler function
-    loadHandler();
-  }, []);
-
+const FAQs = () => {
   return (
-    <div className="faqs">
-      <h2 className="faqs_heading">FAQs</h2>
-      <div className="faqs_explore">
-        {/* Render the ExploreAccordion component for each question */}
-        {questionData.map((qItem) => {
-          // Generate a unique id for each ExploreAccordion
-          const id = getUId();
-          return <ExploreAccordion key={id} data={qItem} />;
+    <div className={styles.FaqsWrapper}>
+      <div className={styles.Faqs}>
+        <h1>FAQs</h1>
+
+        {Object.keys(query).map((question, index) => {
+          return (
+            <Accordion key={question} className={styles.accordion}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon className={styles.expandIcon} />}
+                aria-controls={`panel${index}a-content`}
+                id={`panel${index}a-header`}
+                className={styles.question}
+              >
+                <Typography>{question}</Typography>
+              </AccordionSummary>
+              <AccordionDetails className={styles.answer}>
+                <Typography>{query[question]}</Typography>
+              </AccordionDetails>
+            </Accordion>
+          );
         })}
       </div>
     </div>
   );
 };
 
-export default Faqs;
+export { FAQs };

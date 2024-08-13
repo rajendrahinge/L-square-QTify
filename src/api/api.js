@@ -6,7 +6,6 @@ const config = {
         NewAlbum: "https://qtify-backend-labs.crio.do/albums/new",
         Songs: "https://qtify-backend-labs.crio.do/songs",
         genres: "https://qtify-backend-labs.crio.do/genres",
-        faq: "https://qtify-backend-labs.crio.do/faq",
     },
 };
 
@@ -46,13 +45,4 @@ const fetchGenres = async() => {
     }
 };
 
-const fetchFaq = async() => {
-    try {
-        let res = await axios.get(config["endpoint"].faq);
-        return res.data;
-    } catch (err) {
-        return new Error("Failed to Fetch !", "err");
-    }
-};
-
-export { fetchTopAlbum, fetchNewAlbum, fetchSongs, fetchGenres, fetchFaq };
+export { fetchTopAlbum, fetchNewAlbum, fetchSongs, fetchGenres };
